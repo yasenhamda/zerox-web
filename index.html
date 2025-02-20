@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zerox Navbar</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: background 0.3s, color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            color: black;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border-radius: 15px;
+            width: 60%;
+            max-width: 400px;
+            transition: background 0.3s;
+            position: fixed;
+            top: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .toggle-btn, .lang-btn {
+            background: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            margin-top: 100px;
+            width: 60%;
+            max-width: 400px;
+        }
+
+        .content img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-left: 15px;
+        }
+
+        .text {
+            flex: 1;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .projects {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .project {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .project img {
+            width: 150px;
+            height: 100px;
+            border-radius: 15px;
+            margin-right: 15px;
+            cursor: pointer;
+            transition: border 0.3s;
+            border: 3px dotted green;
+        }
+
+        .dark-mode .project img {
+            border: 3px dotted blue;
+        }
+
+        .channels {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .channels img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .contact p {
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        .contact img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* الوضع الداكن */
+        .dark-mode {
+            background-color: black;
+            color: white;
+        }
+
+        .dark-mode .navbar {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <nav class="navbar" id="navbar">
+        <h1 id="title">Zerox</h1>
+        <div class="buttons">
+            <button class="toggle-btn" onclick="toggleMode()">🌙</button>
+            <button class="lang-btn" onclick="toggleLanguage()">🌍</button>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div class="text" id="welcome-text">اهلا انا ياسين حماده المعروف ZEROX مطور العاب و مطور مواقع على قده.</div>
+        <img src="profile.jpeg" alt="Profile Picture">
+    </div>
+
+    <div class="projects">
+        <h2 id="projects-title">مشروعاتي</h2>
+        <div class="project">
+            <a href="https://example.com/project1" target="_blank">
+                <img src="https://via.placeholder.com/150x100" alt="Project 1">
+            </a>
+            <p id="project1">المشروع الأول</p>
+        </div>
+        <div class="project">
+            <a href="https://example.com/project2" target="_blank">
+                <img src="https://via.placeholder.com/150x100" alt="Project 2">
+            </a>
+            <p id="project2">المشروع الثاني</p>
+        </div>
+        <div class="project">
+            <a href="https://example.com/project3" target="_blank">
+                <img src="https://via.placeholder.com/150x100" alt="Project 3">
+            </a>
+            <p id="project3">المشروع الثالث</p>
+        </div>
+    </div>
+
+    <div class="channels">
+        <h2 id="channels-title">قنواتي</h2>
+        <img src="download (4).jpg" alt="Channel" onclick="window.location.href='https://youtube.com/@zerox_084?si=6IePQwSettIFE5Gh'">
+    </div>
+
+    <div class="contact">
+        <p id="contact-text">للتواصل لعمل أي موقع أو لعبة</p>
+        <img src="download.png" alt="Contact" onclick="window.location.href='https://example.com/contact'">
+    </div>
+
+    <script>
+        let currentLang = 'ar';
+        let isDarkMode = false;
+
+        const translations = {
+            ar: {
+                welcomeText: "اهلا انا ياسين حماده المعروف ZEROX مطور العاب و مطور مواقع على قده.",
+                projectsTitle: "مشروعاتي",
+                channelsTitle: "قنواتي",
+                contactText: "للتواصل لعمل أي موقع أو لعبة",
+                project1: "المشروع الأول",
+                project2: "المشروع الثاني",
+                project3: "المشروع الثالث"
+            },
+            en: {
+                welcomeText: "Hello, I am Yasen Hamada, known as ZEROX, a game developer and website developer.",
+                projectsTitle: "My Projects",
+                channelsTitle: "My Channels",
+                contactText: "Contact for creating any website or game",
+                project1: "Project One",
+                project2: "Project Two",
+                project3: "Project Three"
+            }
+        };
+
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode');
+            isDarkMode = !isDarkMode;
+            document.querySelector('.toggle-btn').textContent = isDarkMode ? '☀️' : '🌙';
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.getElementById('welcome-text').textContent = translations[currentLang].welcomeText;
+            document.getElementById('projects-title').textContent = translations[currentLang].projectsTitle;
+            document.getElementById('channels-title').textContent = translations[currentLang].channelsTitle;
+            document.getElementById('contact-text').textContent = translations[currentLang].contactText;
+            document.getElementById('project1').textContent = translations[currentLang].project1;
+            document.getElementById('project2').textContent = translations[currentLang].project2;
+            document.getElementById('project3').textContent = translations[currentLang].project3;
+        }
+    </script>
+</body>
+</html>
